@@ -1,28 +1,44 @@
 import { PageHeader, Space, Table } from 'antd';
-import React from 'react'
+import React from 'react';
+import { useQuery, gql } from "@apollo/client"
 
-class Events extends React.Component {
+const GET_EVENTS = gql`
+query {
+    characters {
+        results {
+            id
+            name
+        }
+    }
+}
+`
+function Events() {
 
-    eventColumns = [
-        { title:'Event Name', dataIndex: 'eventname',key: 'eventname' },
-        { title:'Date', dataIndex: 'date', key: 'date' },
-        { title:'Tickets remaining', dataIndex: 'ticremain', key: 'tickremain' },
-        { title:'Action', dataIndex: 'action',key: 'action' },
-    ]
+    const {error, data, loading} = useQuery(GET_EVENTS);
 
-    eventData = [
-        {key: '1', eventname: 'Distortion', date: '20-03-2022', ticremain: 20, action:''},
-        {key: '2', eventname: 'Distortion', date: '20-03-2022', ticremain: 20, action:''},
-        {key: '3', eventname: 'Distortion', date: '20-03-2022', ticremain: 20, action:''}
-    ]
+    const testDataColumns = [
+        {title: '#', dataIndex: 'id', key: 'id'},
+        {title: 'Event Name', dataIndex: 'name'},
+        {title: 'Venue', dataIndex: ''},
+        {title: 'Date', dataIndex: ''},
+        {title: 'Actions', dataIndex: ''}
+    ] 
 
-    render(){ 
-        return(
+    if(loading) return (
         <>
             <PageHeader className='site-page-header' title="Events"></PageHeader>
-            <Table columns={this.eventColumns} dataSource={this.eventData}></Table>
+            <Table columns={testDataColumns} loading='true' ></Table>
         </>
-    )};
+    )
+    
+    if(error) return 'Error....'
+ 
+    return(
+        <>
+            <PageHeader className='site-page-header' title="Events"></PageHeader>
+            <Table rowKey={record => record.id} columns={testDataColumns} loading={loading} dataSource={data.characters.results}></Table>
+        </>
+    );
 }
 
 export default Events;
