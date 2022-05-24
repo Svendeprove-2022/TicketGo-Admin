@@ -1,49 +1,38 @@
 import './App.css';
 
-import { Layout, Menu, Breadcrumb } from 'antd'
-import { Content, Footer, Header } from 'antd/lib/layout/layout'
+import Login from './pages/Login';
+import Admin from './admin';
+import { RealmAppProvider, useRealmApp } from './RealmApp';
+import RealmApolloProvider from './RealmApolloProvider';
 
-import { HashRouter, Link ,Route, Routes, useLocation} from 'react-router-dom'
 
-import Home from './pages/Home'
-import Events from './pages/Events'
-import Artists from './pages/Artists'
-import Sales from './pages/Sales'
+export const APP_ID = "ticketgo-uttab"
 
 const items = [
   {label: ((<a href='/'>Home</a>)), key: 'item-1'}, 
   {label: (<a href='/events'>Events</a>), key:'item-2'},
   {label: (<a href='/artists'>Artists</a>), key:'item-3'},
-  {label: (<a href='/sales'>Sales</a>), key:'item-4'}
+  {label: (<a href='/sales'>Sales</a>), key:'item-4'},
+  {label: (<a href='/login'>Login</a>), key:'item-5'}
 ]
 
-const breadCrumbMap = {
-  '/home':'home',
-  '/sales': 'sales',
-  '/sales/details': 'details',
-  '/events/': 'events',
-  '/events/details': 'details',
-}
 
+const RequireLoggedInUser = ({children}) => {
+  const app = useRealmApp();
+  //console.log(app.currentUser);
+  return app.currentUser ? children : <Login/>
+}
 /* https://ant.design/components/breadcrumb/ */
 
 function App() {
   return (
-    <Layout style={{minHeight: '100vh'}}>
-      <Header style={{position: 'fixed', zIndex: 1, width: '100%'}}>
-        <div className="logo"  style={{height: '30px', width:'120px', float: 'left', margin: '16px 24px 16px 0', background: 'rgba(255, 255, 255, 0.3)'}}/>
-        <Menu theme='dark' mode='horizontal' items={items}/>  
-      </Header>
-      <Content className='site-layout' style={{ padding: '0 50px', marginTop: 64,}}>
-        <Routes>
-          <Route path="/" element={ <Home/> }/>
-          <Route path="/sales" element={ <Sales/> }/>
-          <Route path="/events" element={ <Events/> }/>
-          <Route path="/artists" element={ <Artists/> }/>
-        </Routes>
-      </Content>
-      <Footer></Footer>
-    </Layout>
+    <RealmAppProvider appId={APP_ID}>
+      <RequireLoggedInUser>
+        <RealmApolloProvider>
+          <Admin/>
+        </RealmApolloProvider>
+      </RequireLoggedInUser>
+    </RealmAppProvider>
   );
 }
 
