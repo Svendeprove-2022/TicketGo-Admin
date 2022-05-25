@@ -9,10 +9,13 @@ import Events from './pages/Events';
 import Artists from './pages/Artists';
 import Sales from './pages/Sales';
 import Logout from './pages/logout';
-import editEvent from './pages/edit/editEvent';
+
+import CreateEvent from './pages/create/EventCreate';
+import ReadEvent from './pages/read/ReadEvent';
+import EditEvent from './pages/edit/EditEvent';
 
 const items = [
-    {label: ((<a href='/'>Home</a>)), key: 'item-1'}, 
+    {label: (<a href='/'>Home</a>), key: 'item-1'}, 
     {label: (<a href='/events'>Events</a>), key:'item-2'},
     {label: (<a href='/artists'>Artists</a>), key:'item-3'},
     {label: (<a href='/sales'>Sales</a>), key:'item-4'},
@@ -32,8 +35,12 @@ export default function Admin(){
         <Routes>
             <Route path="/" element={ <Home/> }/>
             <Route path="/sales" element={ <Sales/> }/>
+
             <Route path="/events" element={ <Events/> }/>
-            <Route path="/events/edit/" element= { <editEvent/> }/>
+            <Route path='/events/create' element={ <CreateEvent/> }/>
+            <Route path='/events/:id' element={<ReadEvent/>}/>
+            <Route path='/events/edit/:id' element={<EditEvent/>} />
+            
             <Route path="/artists" element={ <Artists/> }/>
             <Route path="/logout" element={ <Logout/> }/>
         </Routes>

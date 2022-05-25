@@ -1,5 +1,7 @@
 import './App.css';
 
+import { BrowserRouter } from 'react-router-dom';
+
 import Login from './pages/Login';
 import Admin from './admin';
 import { RealmAppProvider, useRealmApp } from './RealmApp';
@@ -26,6 +28,7 @@ const RequireLoggedInUser = ({children}) => {
 
 function App() {
   return (
+    //<BrowserRouter>
     <RealmAppProvider appId={APP_ID}>
       <RequireLoggedInUser>
         <RealmApolloProvider>
@@ -33,6 +36,7 @@ function App() {
         </RealmApolloProvider>
       </RequireLoggedInUser>
     </RealmAppProvider>
+    //</BrowserRouter>
   );
 }
 
