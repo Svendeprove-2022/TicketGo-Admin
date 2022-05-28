@@ -1,4 +1,5 @@
 import React from 'react'
+import {GET_EVENTS} from '../GraphQL/Queries'
 
 function Home() {
     return (

@@ -25,7 +25,7 @@ export default function Login(){
     }
 
     return (
-        <Form form name='login' autoComplete='off' onFinish={handleLogin}>
+        <Form name='login' autoComplete='off' onFinish={handleLogin}>
             <Form.Item label="Username" name="username"><Input/></Form.Item>
             <Form.Item label="Password" name="password"><Input.Password/></Form.Item>
             <Form.Item wrapperCol={{span:8}}>

@@ -6,18 +6,23 @@ import { RealmAppProvider, useRealmApp } from './RealmApp';
 
 import Home from './pages/Home';
 import Events from './pages/Events';
-import Artists from './pages/Artists';
+import Venues from './pages/Venues';
 import Sales from './pages/Sales';
 import Logout from './pages/logout';
+import Users from './pages/Users';
+import EditUser from './pages/EditUser';
 
 import CreateEvent from './pages/create/EventCreate';
 import ReadEvent from './pages/read/ReadEvent';
-import EditEvent from './pages/edit/EditEvent';
+import EditEvent from './pages/EditEvent';
+import VenueCreate from './pages/create/VenueCreate'
+import VenueEdit from './pages/edit/VenueEdit'
 
 const items = [
     {label: (<a href='/'>Home</a>), key: 'item-1'}, 
     {label: (<a href='/events'>Events</a>), key:'item-2'},
-    {label: (<a href='/artists'>Artists</a>), key:'item-3'},
+    {label: (<a href='/venues'>Venues</a>), key:'item-3'},
+    {label: (<a href='/users'>Users</a>), key:'item-6'},
     {label: (<a href='/sales'>Sales</a>), key:'item-4'},
     {label: (<a href='/logout'>Log out</a>), key:'item-5'},
   ]
@@ -40,8 +45,14 @@ export default function Admin(){
             <Route path='/events/create' element={ <CreateEvent/> }/>
             <Route path='/events/:id' element={<ReadEvent/>}/>
             <Route path='/events/edit/:id' element={<EditEvent/>} />
+
+            <Route path="/users" element={ <Users/> }/>
+            <Route path="/users/edit/:id" element={ <EditUser/> }/>
             
-            <Route path="/artists" element={ <Artists/> }/>
+            <Route path="/venues" element={ <Venues/> }/>
+            <Route path="/venues/create" element={ <VenueCreate/> }/>
+            <Route path="/venues/edit/:id" element={ <VenueEdit/> }/>
+
             <Route path="/logout" element={ <Logout/> }/>
         </Routes>
     </Content>
