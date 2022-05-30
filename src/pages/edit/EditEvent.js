@@ -4,35 +4,11 @@ import { useQuery, gql, useMutation } from "@apollo/client"
 import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment';
 import TextArea from 'antd/lib/input/TextArea';
-import {GET_VENUES} from '../GraphQL/Queries'
-import {UPDATE_EVENT} from '../GraphQL/Mutations'
-
-const GET_EVENT = gql`
-query getEvent($eventId: ObjectId!){
-  event(query: {_id:$eventId}) {
-      _id
-		  age_restriction
-		  images
-		  info
-		  name
-		  note
-		  rank
-		  status
-		  tickets_capacity
-		  tickets_limit
-		  tickets_sold
-		  timestamp
-		  url
-      venue{
-        _id
-        name
-      }
-    }
-  }
-`
+import {GET_VENUES, GET_EVENT} from '../../GraphQL/Queries'
+import {UPDATE_EVENT} from '../../GraphQL/Mutations'
 
 const EditEvent = () =>  {
-  const { Option } = Select;
+  //const { Option } = Select;
 
   //gets id from browser URL
   const navigate = useNavigate();
@@ -60,15 +36,15 @@ const EditEvent = () =>  {
     }
   }
 
-  const {error: venueError, data:venueData, loading:venueLoading} = useQuery(GET_VENUES)
   
   const {error, data, loading} = useQuery(GET_EVENT, {variables: {"eventId": id}});
-
+  
   const [venues, setVenues] = useState([])
+  const {error: venueError, data:venueData, loading:venueLoading} = useQuery(GET_VENUES)
 
   useEffect(() => {
     if(venueData){
-      let tmp =venueData.venues.map((venue) => ({label: venue.name, value: venue._id}))
+      let tmp = venueData.venues.map((venue) => ({label: venue.name, value: venue._id, key: venue._id}))
       setVenues(tmp)
     }
   }, [venueData])
@@ -98,9 +74,9 @@ const EditEvent = () =>  {
       </div>
       <Card loading={loading}>
         <Form form={form} id="myform" layout="vertical" onFinish={updateEvent}>
-          <Form.Item label="Date" initialValue={moment(data?.event.timestamp)}>
+         {/*  <Form.Item label="Date" initialValue={moment(data?.event.timestamp)}>
             <DatePicker name='datetime' allowClear={false} placeholder='Select Time & Date' defaultValue={moment(data?.event.timestamp)} format={"YYYY-MM-DD HH:MM:SSS"} showTime={true}/>
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item name='eventname' label="Event Title">
             <Input placeholder='Event Title' defaultValue={data?.event.name}/>
           </Form.Item>

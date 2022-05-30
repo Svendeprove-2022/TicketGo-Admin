@@ -29,6 +29,9 @@ const VenueCreate = () => {
                 "url": url
             }
         })
+        if(createError){
+            console.log(createError);
+        }
     }
     
 

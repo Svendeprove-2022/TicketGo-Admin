@@ -142,3 +142,23 @@ mutation deleteVenue($venueId:ObjectId!){
   }
 }
 `
+
+export const CREATE_ORDER = gql`
+mutation CreateOrder($eventId:ObjectId, $tickets:[TicketInsertInput], $status:String, $userId: ObjectId){
+  insertOneOrder(data:{
+    tickets:{create:$tickets},
+    event: {link:$eventId},
+    user: {link:$userId},
+    status: $status
+}){
+  _id
+}}
+`
+
+export const DELETE_ORDER = gql`
+mutation deleteOrder($saleId:ObjectId!){
+  deleteOneOrder(query: {_id: $saleId}){
+    _id
+  }
+}
+`

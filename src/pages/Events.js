@@ -40,9 +40,9 @@ const Events = () =>  {
         {title: "Ticket's Sold", dataIndex: 'tickets_sold'},
         {title: 'Actions', dataIndex: '', render: (_, record) => (
             <Space size="middle">
-                <Link to={`/events/edit/${record._id}`}>Edit</Link>
+                <Button type="primary"><Link to={`/events/edit/${record._id}`}>Edit</Link></Button>
                 <Popconfirm title="Confirm Deletion" onCancel={null} onConfirm={() => {onDeleteHandler({variables: { "eventId": record._id}})}}>
-                    <Button>Delete</Button>
+                    <Button type="default" danger>Delete</Button>
                 </Popconfirm>            
             </Space>
         )}

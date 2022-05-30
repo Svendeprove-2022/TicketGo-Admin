@@ -27,16 +27,16 @@ query getEvent($eventId: ObjectId!){
 
 export const GET_EVENTS = gql`
 query {
-    events {
+  events {
+    _id
+    name
+    venue {
       _id
       name
-      venue {
-        _id
-        name
-      }
-      tickets_sold
     }
+    tickets_sold
   }
+}
 `
 
 export const GET_VENUES = gql`
@@ -97,5 +97,54 @@ query getUser($userId: ObjectId!){
     last_name
     mobile
     zip_code
-  }}
+  }
+}
+`
+
+export const GET_ORDERS = gql`
+query {
+  orders {
+    _id
+    event{
+      _id
+      name
+    }
+    status
+    user {
+      _id
+    }
+  }
+}
+`
+
+export const GET_ORDER = gql`
+query getOrder($orderId: ObjectId!){
+  order(query: {_id:$orderId}){
+    _id
+    event {
+      _id
+      name
+    }
+    status
+    user {
+      _id
+    }
+    tickets{
+      _id
+      section{
+        _id
+        name
+      }
+    }
+  }
+}
+`
+
+export const GET_SECTIONS_FOR_EVENT = gql`
+query getSectionsForEvent($eventId:ObjectId) {
+  sections(query:{event:{_id:$eventId}}) {
+    _id
+    name
+  }
+}
 `

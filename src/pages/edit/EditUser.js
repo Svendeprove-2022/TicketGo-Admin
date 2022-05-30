@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Card, Input, PageHeader, Form, Button } from "antd";
 import React from "react";
-import {GET_USER} from '../GraphQL/Queries';
+import {GET_USER} from '../../GraphQL/Queries';
 import { useNavigate, useParams } from 'react-router-dom';
-import { UPDATE_USER } from "../GraphQL/Mutations";
+import { UPDATE_USER } from "../../GraphQL/Mutations";
 
 const EditUser = () => {
     const { id } = useParams();

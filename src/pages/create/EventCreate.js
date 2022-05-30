@@ -18,7 +18,7 @@ const CreateEvent = () => {
 
     useEffect(() => {
         if(venueData){
-            let tmp =venueData.venues.map((venue) => ({label: venue.name, value: venue._id}))
+            let tmp = venueData.venues.map((venue) => ({label: venue.name, value: venue._id}))
             setVenues(tmp)
         }
     }, [venueData])
