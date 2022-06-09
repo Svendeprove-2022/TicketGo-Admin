@@ -20,7 +20,6 @@ export default function Login(){
         } catch(err) {
             handleAuthenticationError(err, setError);
             console.log(error);
-            console.log(email, password);
         }
     }
 
