@@ -4,13 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from "@apollo/client"
 
+export const APP_ID = "ticketgo-uttab"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const link = new HttpLink({
-  uri: "https://eu-central-1.aws.realm.mongodb.com/api/client/v2.0/app/ticketgo-realm-yiuzm/graphql",
-  headers
+/* const link = new HttpLink({
+  uri: "https://eu-central-1.aws.realm.mongodb.com/api/client/v2.0/app/ticketgo-uttab/graphql",
 })
 
 const ticketgoClient = new ApolloClient({
@@ -21,15 +20,17 @@ const ticketgoClient = new ApolloClient({
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
   cache: new InMemoryCache()
-})
+}) */
+
+
 
 root.render(
   <BrowserRouter>
+  {/* <ApolloProvider client={client}> */}
   <React.StrictMode>
-    <ApolloProvider client={client}>
       <App />
-    </ApolloProvider>
   </React.StrictMode>
+{/*   </ApolloProvider> */}
   </BrowserRouter>
 );
 
