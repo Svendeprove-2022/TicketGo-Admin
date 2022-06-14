@@ -38,7 +38,9 @@ export default function Admin(){
     return (
     <Layout style={{minHeight: '100vh'}}>
     <Header style={{position: 'fixed', zIndex: 1, width: '100%'}}>
-        <div className="logo"  style={{height: '30px', width:'120px', float: 'left', margin: '16px 24px 16px 0', background: 'rgba(255, 255, 255, 0.3)'}}/>
+        <div className="logo"  style={{
+            height: '30px', width:'120px', 
+            float: 'left', margin: '16px 24px 16px 0', background: 'rgba(255, 255, 255, 0.3)'}}/>
         <Menu theme='dark' mode='horizontal' items={items}/>  
     </Header>
     <Content className='site-layout' style={{ padding: '0 50px', marginTop: 64,}}>
@@ -64,7 +66,7 @@ export default function Admin(){
             <Route path="/logout" element={ <Logout/> }/>
         </Routes>
     </Content>
-    <Footer></Footer>
+    <Footer/>
     </Layout>
     )
 }

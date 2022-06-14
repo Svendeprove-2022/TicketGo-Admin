@@ -76,7 +76,7 @@ mutation updateEvent(
     }
 }}
 `
-//only updates name for now
+
 export const UPDATE_USER = gql`
 mutation updateUser(
   $userId: ObjectId!, 
@@ -117,7 +117,10 @@ mutation createVenue($venuename:String, $city:String, $country:String, $address:
 `
 
 export const UPDATE_VENUE = gql`
-mutation updateVenue($venueId:ObjectId,$venuename:String, $city:String, $country:String, $address:String, $zip_code:String, $note:String, $url:String){
+mutation updateVenue($venueId:ObjectId,
+  $venuename:String, $city:String, 
+  $country:String, $address:String, 
+  $zip_code:String, $note:String, $url:String){
   updateOneVenue(
     query:{_id:$venueId},
     set:{

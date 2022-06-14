@@ -48,8 +48,6 @@ const Events = () =>  {
         )}
     ] 
 
-    
-    
     if(eventError) return 'Error....'
 
     return(
